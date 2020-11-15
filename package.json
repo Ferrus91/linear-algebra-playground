@@ -1,0 +1,11 @@
+{
+  "name": "linearalgebra",
+  "version": "1.0.0",
+  "description": "Playground for linear algebra to reinforce learning",
+  "scripts": {
+    "matrixMultiplication": "node matrixMultiplication"
+  },
+  "keywords": ["linear algebra", "maths"],
+  "author": "Sam Keays",
+  "license": "ISC"
+}

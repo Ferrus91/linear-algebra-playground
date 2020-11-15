@@ -1,0 +1,1 @@
+Each file is an independent module, that may be linked eventually. Run each operation with a reference to the matrix in the matrices file e.g. npm run matrixMultiplication identity identity
