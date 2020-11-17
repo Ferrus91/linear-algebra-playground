@@ -12,14 +12,10 @@ test('Cross Product of 2 3d vectors', () => {
 });
 
 test('Cross Product doesnt work for non-3d vector', () => {
-    try {
-        crossProduct(
-            [[1],
-              [8]],
-            [[9],
-              [3]],
-          );   
-    } catch (e) {
-        expect(e.message).toBe(`First vector isn't a 3d Vector`)
-    }
+  expect(() => crossProduct(
+    [[1],
+      [8]],
+    [[9],
+      [3]],
+  )).toThrow('First vector isn\'t a 3d Vector');
 });

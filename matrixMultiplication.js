@@ -1,6 +1,6 @@
 module.exports = (matrix1, matrix2) => {
   const n = matrix1[0].length;
-  if (n !== matrix2.length) throw Error('Matrix multiplication impossible');
+  if (n !== matrix2.length) throw Error('Matrix multiplication impossible, not of form nxr, rxm');
   const m = matrix2[0].length;
 
   const productMatrix = [];

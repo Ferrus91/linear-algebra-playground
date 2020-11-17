@@ -12,6 +12,6 @@ const determinant = (M) => {
 };
 
 module.exports = (matrix) => {
-  if (matrix.length !== matrix[0].length) throw Error('Not square!');
+  if (matrix.length !== matrix[0].length) throw Error('Matrix is not square!');
   return determinant(matrix);
 };
