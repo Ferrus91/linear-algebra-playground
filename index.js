@@ -4,6 +4,7 @@ const dotProduct = require('./dotProduct');
 const crossProduct = require('./crossProduct');
 const matrixMultiplication = require('./matrixMultiplication');
 const determinant = require('./determinant');
+const { scalarMultiplication } = require('./utils');
 const packageJson = require('./package');
 
 const program = new Command();
@@ -14,6 +15,7 @@ const writeJson = (result, filename) => fs.writeFileSync(`./output/${filename}.j
 
 program
   .option('-o, --operation <operation>', 'Linear algebra operation')
+  .option('-s, --scalar <scalar>', 'Scalar for multiplication')
   .option('-v1, --vector1 <vector1>', 'First vector')
   .option('-v2, --vector2 <vector2>', 'Second vector')
   .option('-m, --matrix <matrix1>', 'A single matrix')
@@ -27,6 +29,7 @@ let vector1;
 let vector2;
 let matrix1;
 let matrix2;
+let scalar;
 
 if (program.vector1) {
   vector1 = readJson(`./matrices/${program.vector1}.json`);
@@ -48,6 +51,10 @@ if (program.matrix2) {
   matrix2 = readJson(`./matrices/${program.matrix2}.json`);
 }
 
+if (program.scalar) {
+    scalar = parseInt(program.scalar, 10);
+}  
+
 if (program.operation === 'dot-product') {
   if (!vector1 || !vector2) throw Error('Dot product requires 2 vectors');
   result = dotProduct(vector1, vector2);
@@ -66,6 +73,12 @@ if (program.operation === 'matrix-multiplication') {
 if (program.operation === 'determinant') {
   if (!matrix1 || matrix2) throw Error('Matrix determinant requires 1 matrix');
   result = determinant(matrix1);
+}
+
+if (program.operation = 'scalar-multiplication') {
+    if (!matrix1 || matrix2) throw Error('Scalar multiplication requires 1 matrix');
+    if (scalar === null || scalar === undefined)  throw Error('Scalar multiplication requires a scalar');
+    result = scalarMultiplication(scalar, matrix1);
 }
 
 if (result === null || result === undefined) process.exit(-1);

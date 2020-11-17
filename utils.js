@@ -21,7 +21,12 @@ const transpose = (matrix) => {
     return genericCopy(matrix, (matrix, i, j) => matrix[j][i]);
 }
 
+const scalarMultiplication = (scalar, matrix) => {
+    return genericCopy(matrix, (matrix, i, j) => scalar * matrix[j][i]);
+}
+
 module.exports = {
     deepCopy,
     transpose,
+    scalarMultiplication,
 };
