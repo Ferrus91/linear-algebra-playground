@@ -1,7 +1,3 @@
-const matrix = require(`./matrices/${process.argv[2]}`);
-
-if(matrix.length != matrix[0].length) throw 'Not square!';
-
 const removeArrayIndex = (list, i) => list.slice(0, i).concat(list.slice(i + 1));
 
 const determinant = (M) => {
@@ -15,4 +11,7 @@ const determinant = (M) => {
     return determinantValue;
 }
 
-console.log(determinant(matrix));
+module.exports = (matrix) => {
+    if(matrix.length != matrix[0].length) throw 'Not square!';
+    return determinant(matrix);
+}
