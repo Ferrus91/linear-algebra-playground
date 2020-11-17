@@ -17,7 +17,7 @@ const deepCopy = (originalMatrix) => genericCopy(originalMatrix, (matrix, i, j) 
 
 const transpose = (originalMatrix) => genericCopy(originalMatrix, (matrix, i, j) => matrix[j][i]);
 
-const scalarMultiplication = (scalar, originalMatrix) => genericCopy(originalMatrix, (matrix, i, j) => scalar * matrix[j][i]);
+const scalarMultiplication = (scalar, originalMatrix) => genericCopy(originalMatrix, (matrix, i, j) => scalar * matrix[i][j]);
 
 module.exports = {
   deepCopy,
