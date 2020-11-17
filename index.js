@@ -77,7 +77,7 @@ if (program.operation === 'determinant') {
 
 if (program.operation = 'scalar-multiplication') {
     if (!matrix1 || matrix2) throw Error('Scalar multiplication requires 1 matrix');
-    if (scalar === null || scalar === undefined)  throw Error('Scalar multiplication requires a scalar');
+    if (scalar === null || scalar === undefined) throw Error('Scalar multiplication requires a scalar');
     result = scalarMultiplication(scalar, matrix1);
 }
 
