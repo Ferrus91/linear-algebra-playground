@@ -10,6 +10,7 @@ const program = new Command();
 program.version(packageJson.version);
 
 const readJson = (filepath) => JSON.parse(fs.readFileSync(filepath, 'utf-8'));
+const writeJson = (result, filename) => fs.writeFileSync(`./output/${filename}.json`, JSON.stringify(result, null,  0));
 
 program
   .option('-o, --operation <operation>', 'Linear algebra operation')
@@ -17,7 +18,8 @@ program
   .option('-v2, --vector2 <vector2>', 'Second vector')
   .option('-m, --matrix <matrix1>', 'A single matrix')
   .option('-m1, --matrix1 <matrix1>', 'First matrix')
-  .option('-m2, --matrix2 <matrix2>', 'Second matrix');
+  .option('-m2, --matrix2 <matrix2>', 'Second matrix')
+  .option('-ext, --external-file <externalFile>', 'External File to output to (default to console)');
 
 program.parse(process.argv);
 let result;
@@ -66,4 +68,10 @@ if (program.operation === 'determinant') {
   result = determinant(matrix1);
 }
 
-console.log(result);
+if (result === null || result === undefined) return;
+
+if (program.externalFile) {
+    writeJson(result, program.externalFile)
+} else {
+    console.log(result);
+}

@@ -4,6 +4,7 @@
   "description": "Playground for linear algebra to reinforce learning",
   "scripts": {
     "linear-algebra": "node index",
+    "linear-algebra-help": "node index -h",
     "test": "jest",
     "lint": "eslint . --ext .js"
   },
