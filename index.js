@@ -52,8 +52,8 @@ if (program.matrix2) {
 }
 
 if (program.scalar) {
-    scalar = parseInt(program.scalar, 10);
-}  
+  scalar = parseInt(program.scalar, 10);
+}
 
 if (program.operation === 'dot-product') {
   if (!vector1 || !vector2) throw Error('Dot product requires 2 vectors');
@@ -75,10 +75,10 @@ if (program.operation === 'determinant') {
   result = determinant(matrix1);
 }
 
-if (program.operation = 'scalar-multiplication') {
-    if (!matrix1 || matrix2) throw Error('Scalar multiplication requires 1 matrix');
-    if (scalar === null || scalar === undefined) throw Error('Scalar multiplication requires a scalar');
-    result = scalarMultiplication(scalar, matrix1);
+if (program.operation === 'scalar-multiplication') {
+  if (!matrix1 || matrix2) throw Error('Scalar multiplication requires 1 matrix');
+  if (scalar === null || scalar === undefined) throw Error('Scalar multiplication requires a scalar');
+  result = scalarMultiplication(scalar, matrix1);
 }
 
 if (result === null || result === undefined) process.exit(-1);
