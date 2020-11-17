@@ -13,7 +13,6 @@ const genericCopy = (matrix, entrySelector) => {
     return copiedMatrix;
 }
 
-
 const deepCopy = (matrix) => {
     return genericCopy(matrix, (matrix, i, j) => matrix[i][j]);
 }
