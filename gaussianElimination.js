@@ -15,7 +15,7 @@ const backSubstitution = (matrix, result) => {
     for (let j = i + 1; j < n; j += 1) {
       tempSum += matrix[i][j] * tempSolution[j];
     }
-    tempSolution[i] = (result[i] - tempSum) / matrix[i][i];
+    tempSolution[i] = [(result[i] - tempSum) / matrix[i][i]];
   }
   return tempSolution;
 };
