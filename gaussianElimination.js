@@ -48,12 +48,11 @@ for (let i = 0; i < n; i += 1) {
   if (maxPivotIndex !== 0) {
     matrix = swapRows(matrix, i, maxPivotIndex);
     result = swapRows(result, i, maxPivotIndex);
-  }
-
-  for (let j = i + 1; j < m; j += 1) {
-    const ratio = matrix[j][i] / maxPivotValue;
-    matrix = addRowMultiple(matrix, i, j, -ratio);
-    result = addRowMultiple(result, i, j, -ratio);
+    for (let j = i + 1; j < m; j += 1) {
+      const ratio = matrix[j][i] / maxPivotValue;
+      matrix = addRowMultiple(matrix, i, j, -ratio);
+      result = addRowMultiple(result, i, j, -ratio);
+    }
   }
 }
 
