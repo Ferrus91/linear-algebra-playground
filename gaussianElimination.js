@@ -37,11 +37,13 @@ const m = matrix[0].length;
 
 for (let i = 0; i < n; i += 1) {
   let maxPivotIndex = 0;
-  let maxPivotValue = matrix[i][i];
+  let maxPivotValue = Math.abs(matrix[i][i]);
+  let maxPivotSign = Math.sign(matrix[i][i]);
   for (let j = i + 1; j < m; j += 1) {
     const columnValue = matrix[j][i];
     if (columnValue > maxPivotValue) {
-      maxPivotValue = columnValue;
+      maxPivotValue = Math.abs(columnValue);
+      maxPivotSign = Math.sign(columnValue);
       maxPivotIndex = j;
     }
   }
@@ -49,7 +51,7 @@ for (let i = 0; i < n; i += 1) {
     matrix = swapRows(matrix, i, maxPivotIndex);
     result = swapRows(result, i, maxPivotIndex);
     for (let j = i + 1; j < m; j += 1) {
-      const ratio = matrix[j][i] / maxPivotValue;
+      const ratio = matrix[j][i] / maxPivotSign * maxPivotValue;
       matrix = addRowMultiple(matrix, i, j, -ratio);
       result = addRowMultiple(result, i, j, -ratio);
     }
