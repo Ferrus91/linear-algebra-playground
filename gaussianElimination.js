@@ -1,10 +1,5 @@
-// const determinant = require("./determinant");
-
-// module.exports = (matrix) => {
-//   }
-
 const {
-  swapRows, addRowMultiple, hasZeroRow, zeroRows,
+  swapRows, addRowMultiple,
 } = require('./utils');
 
 const backSubstitution = (matrix, result) => {
@@ -20,48 +15,31 @@ const backSubstitution = (matrix, result) => {
   return tempSolution;
 };
 
-let matrix = [
-  [1, 1, 1],
-  [4, 0, 1],
-  [2, 3, 2],
-];
-
-let result = [
-  [3],
-  [6],
-  [9],
-];
-
-const n = matrix.length;
-const m = matrix[0].length;
-
-for (let i = 0; i < n; i += 1) {
-  let maxPivotIndex = 0;
-  let maxPivotValue = Math.abs(matrix[i][i]);
-  let maxPivotSign = Math.sign(matrix[i][i]);
-  for (let j = i + 1; j < m; j += 1) {
-    const columnValue = matrix[j][i];
-    if (columnValue > maxPivotValue) {
-      maxPivotValue = Math.abs(columnValue);
-      maxPivotSign = Math.sign(columnValue);
-      maxPivotIndex = j;
+module.exports = (matrix, result) => {
+  const n = matrix.length;
+  const m = matrix[0].length;
+  for (let i = 0; i < n; i += 1) {
+    let maxPivotIndex = i;
+    let maxPivotValue = Math.abs(matrix[i][i]);
+    let maxPivotSign = Math.sign(matrix[i][i]);
+    for (let j = i + 1; j < m; j += 1) {
+      const columnValue = Math.abs(matrix[j][i]);
+      console.log(matrix, columnValue, j, i)
+      if (columnValue > maxPivotValue) {
+        maxPivotValue = columnValue;
+        maxPivotSign = Math.sign(columnValue);
+        maxPivotIndex = j;
+      }
     }
-  }
-  if (maxPivotIndex !== 0) {
+    if (maxPivotValue === 0) throw new Error('Singular matrix!');
     matrix = swapRows(matrix, i, maxPivotIndex);
     result = swapRows(result, i, maxPivotIndex);
     for (let j = i + 1; j < m; j += 1) {
-      const ratio = matrix[j][i] / maxPivotSign * maxPivotValue;
+      const ratio = matrix[j][i] / (maxPivotSign * maxPivotValue);
       matrix = addRowMultiple(matrix, i, j, -ratio);
       result = addRowMultiple(result, i, j, -ratio);
     }
   }
+  
+  return backSubstitution(matrix, result);
 }
-
-if (hasZeroRow(matrix)) {
-  const zeroRowsIndicies = zeroRows(matrix);
-  if (zeroRowsIndicies.some((index) => result[index] !== 0)) throw Error('No solutions!');
-}
-const solution = backSubstitution(matrix, result);
-
-console.log(solution);
