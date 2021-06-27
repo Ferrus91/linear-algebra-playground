@@ -24,7 +24,6 @@ module.exports = (matrix, result) => {
     let maxPivotSign = Math.sign(matrix[i][i]);
     for (let j = i + 1; j < m; j += 1) {
       const columnValue = Math.abs(matrix[j][i]);
-      console.log(matrix, columnValue, j, i)
       if (columnValue > maxPivotValue) {
         maxPivotValue = columnValue;
         maxPivotSign = Math.sign(columnValue);
